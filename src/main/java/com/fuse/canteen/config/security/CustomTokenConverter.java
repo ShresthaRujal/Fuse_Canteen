@@ -1,9 +1,7 @@
 package com.fuse.canteen.config.security;
 
-import com.fuse.canteen.UserRepository;
+import com.fuse.canteen.repo.UserRepository;
 import com.fuse.canteen.entity.User;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;

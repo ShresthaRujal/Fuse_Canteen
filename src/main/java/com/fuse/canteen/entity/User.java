@@ -35,9 +35,10 @@ public class User extends BaseEntity{
     private String middleName;
     private String lastName;
 
-    private Long phoneNumber;
+    private String phoneNumber;
 
-
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "EmployeeId")
     private Employee employee;
 
     @ManyToMany

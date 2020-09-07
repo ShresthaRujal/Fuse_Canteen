@@ -1,6 +1,6 @@
 package com.fuse.canteen.config.security;
 
-import com.fuse.canteen.UserRepository;
+import com.fuse.canteen.repo.UserRepository;
 import com.fuse.canteen.entity.Privilege;
 import com.fuse.canteen.entity.Role;
 import com.fuse.canteen.entity.User;
@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional

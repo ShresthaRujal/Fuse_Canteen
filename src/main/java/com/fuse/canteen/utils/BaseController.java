@@ -1,8 +1,19 @@
 package com.fuse.canteen.utils;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 public class BaseController {
+
+    protected final String API_SUCCESS_SAVE = "success.save";
+    protected final String API_SUCCESS_UPDATE = "success.update";
+    protected final String API_SUCCESS_GET = "fetched";
+    protected final String API_SUCCESS_GET_ALL = "fetched.list";
+    protected final String API_SUCCESS_DELETE = "success.deleted";
+
     protected GlobalApiResponse globalApiResponse = new GlobalApiResponse();
     protected final boolean API_SUCCESS_STATUS = true;
+
 
     /**
      * Funtion that sends only Success Message as Response

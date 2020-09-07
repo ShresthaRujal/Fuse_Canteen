@@ -26,4 +26,7 @@ public class Employee extends BaseEntity{
 
     @OneToMany(mappedBy = "employee")
     private Collection<EmployeePosition> employeePosition;
+
+    @OneToOne(mappedBy = "employee")
+    private User user;
 }

@@ -5,4 +5,6 @@ import com.fuse.canteen.entity.Employee;
 
 public interface EmployeeService {
     Employee getEmployee(EmployeeDto employeeDto);
+
+    EmployeeDto getEmployeeDto(Employee employee);
 }

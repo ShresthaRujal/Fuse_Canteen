@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Foods")
-public class Food extends BaseEntity {
+public class Food extends HitCount_BaseEntity {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -23,14 +24,10 @@ public class Food extends BaseEntity {
     @SequenceGenerator(name = "FOOD_SEQ_GEN", sequenceName = "FOOD_SEQ", initialValue = 1, allocationSize = 1)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
-    private String description;
-
-    private BigDecimal price;
-
-    @ManyToOne
-    @JoinColumn(name = "OrderId")
-    private Order order;
+    @OneToMany(mappedBy = "food")
+    private Collection<Item> items;
 
 }

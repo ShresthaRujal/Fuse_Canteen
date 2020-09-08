@@ -38,7 +38,7 @@ public class UserServiceImpl extends AbstractUserServiceImpl {
         try {
             User user = getUser(userDto);
             user.setRoles(Collections.singleton(roleService.getRoleById(userDto.getRole())));
-            user.setEmployee(employeeService.getEmployee(userDto.getEmployeeDto()));
+            user.setEmployee(employeeService.getEmployee(userDto.getEmployee()));
             userRepository.save(user);
         }catch (Exception e){
             e.printStackTrace();
@@ -66,9 +66,9 @@ public class UserServiceImpl extends AbstractUserServiceImpl {
                     }
                 }).collect(Collectors.toList()));
             }
-            if (userDto.getEmployeeDto() != null) {
+            if (userDto.getEmployee() != null) {
                 Employee employeeDb = userDb.getEmployee();
-                beanUtilsBean.copyProperties(employeeDb, employeeService.getEmployee(userDto.getEmployeeDto()));
+                beanUtilsBean.copyProperties(employeeDb, employeeService.getEmployee(userDto.getEmployee()));
                 userDb.setEmployee(employeeDb);
             }
             userRepository.save(userDb);

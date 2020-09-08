@@ -18,4 +18,6 @@ public interface EmployeePositionService {
     void delete(Long employeePosition_id) throws Exception;
 
     EmployeePosition getEmployeePosition(EmployeePositionDto employeePositionDto);
+
+    EmployeePositionDto getEmployeePositionDto(EmployeePosition employeePosition);
 }

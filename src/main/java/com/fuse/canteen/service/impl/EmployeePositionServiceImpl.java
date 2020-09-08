@@ -43,6 +43,7 @@ public class EmployeePositionServiceImpl extends AbstractEmployeePositionService
 
     @Override
     public Object getById(Long employeePosition_id) throws Exception {
+        Assert.notNull(employeePosition_id, customMessageSource.get(MISSING_ID));
         return employeePositionRepo.findById(employeePosition_id).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
     }
 
@@ -52,8 +53,9 @@ public class EmployeePositionServiceImpl extends AbstractEmployeePositionService
     }
 
     @Override
-    public void delete(Long employee_id) throws Exception {
-        EmployeePosition employeePosition = employeePositionRepo.findById(employee_id).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
+    public void delete(Long employeePosition_id) throws Exception {
+        Assert.notNull(employeePosition_id, customMessageSource.get(MISSING_ID));
+        EmployeePosition employeePosition = employeePositionRepo.findById(employeePosition_id).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
         employeePositionRepo.delete(employeePosition);
     }
 }

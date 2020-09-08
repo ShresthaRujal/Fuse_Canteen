@@ -15,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Orders")
-public class Order extends BaseEntity {
+public class Order extends HitCount_BaseEntity {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -24,5 +24,5 @@ public class Order extends BaseEntity {
     private Long id;
 
     @OneToMany(mappedBy = "order")
-    private Collection<Food> foods;
+    private Collection<Item> items;
 }

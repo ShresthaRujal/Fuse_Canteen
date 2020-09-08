@@ -13,4 +13,11 @@ public abstract class AbstractEmployeePositionServiceImpl implements EmployeePos
                 .positionName(employeePositionDto.getPositionName())
                 .build();
     }
+
+    public EmployeePositionDto getEmployeePositionDto(EmployeePosition employeePosition){
+        return EmployeePositionDto.builder()
+                .positionName(employeePosition.getPositionName())
+                .positionLevel(employeePosition.getPositionLevel())
+                .build();
+    }
 }

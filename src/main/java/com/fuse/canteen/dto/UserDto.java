@@ -46,6 +46,6 @@ public class UserDto {
     private Long role;
 
     @NotNull(message = FieldErrorConstants.NOT_NULL)
-    private EmployeeDto employeeDto;
+    private EmployeeDto employee;
 
 }

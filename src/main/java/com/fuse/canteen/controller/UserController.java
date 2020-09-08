@@ -19,21 +19,21 @@ import javax.validation.Valid;
 @RequestMapping("api/user")
 public class UserController extends BaseController {
 
-    private final CustomMessageSource customMessageSource;
     private final UserService userService;
+    private final CustomMessageSource customMessageSource;
     private final String ModuleName = "USER";
 
-
-    @PostMapping("create")
-    public ResponseEntity<?> create(@RequestBody @Valid UserDto userDto) throws Exception {
-        userService.create(userDto);
-        return ResponseEntity.ok(successResponse(customMessageSource.get(API_SUCCESS_SAVE,ModuleName)));
-    }
 
     @PutMapping("edit")
     public ResponseEntity<?> edit(@RequestBody @Valid UserDto userDto) throws Exception {
         userService.edit(userDto);
         return ResponseEntity.ok(successResponse(customMessageSource.get(API_SUCCESS_UPDATE,ModuleName)));
+    }
+
+    @PostMapping("create")
+    public ResponseEntity<?> create(@RequestBody @Valid UserDto userDto) throws Exception {
+        userService.create(userDto);
+        return ResponseEntity.ok(successResponse(customMessageSource.get(API_SUCCESS_SAVE,ModuleName)));
     }
 
     @GetMapping("get/{user_id}")

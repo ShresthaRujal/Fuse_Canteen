@@ -1,5 +1,6 @@
 package com.fuse.canteen.service.impl;
 
+import com.fuse.canteen.constants.Status;
 import com.fuse.canteen.dto.FoodDto;
 import com.fuse.canteen.dto.UserDto;
 import com.fuse.canteen.entity.Food;
@@ -31,17 +32,27 @@ public class FoodServiceImpl extends AbstractFoodServiceImpl {
     }
 
     @Override
-    public void create(FoodDto foodDto) {
-        foodRepo.save(getFood(foodDto));
+    public void create(FoodDto foodDto) throws Exception {
+        try {
+            foodRepo.save(getFood(foodDto));
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
     public void edit(FoodDto foodDto) throws Exception {
-        Assert.notNull(foodDto.getId(),customMessageSource.get(MISSING_ID));
-        Food foodDb = foodRepo.findById(foodDto.getId()).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
-        BeanUtilsBean beanUtilsBean = new NullAwareBeanUtilsBean();
-        beanUtilsBean.copyProperties(foodDb,getFood(foodDto));
-        foodRepo.save(foodDb);
+        try {
+            Assert.notNull(foodDto.getId(), customMessageSource.get(MISSING_ID));
+            Food foodDb = foodRepo.findById(foodDto.getId()).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
+            BeanUtilsBean beanUtilsBean = new NullAwareBeanUtilsBean();
+            beanUtilsBean.copyProperties(foodDb, getFood(foodDto));
+            foodRepo.save(foodDb);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+        }
     }
 
     @Override
@@ -59,11 +70,17 @@ public class FoodServiceImpl extends AbstractFoodServiceImpl {
     public void delete(Long foodId) throws Exception {
         Assert.notNull(foodId,customMessageSource.get(MISSING_ID));
         Food food = foodRepo.findById(foodId).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
-        foodRepo.delete(food);
+        food.setStatus(Status.DEACTIVATED.getKey());
+        foodRepo.save(food);
     }
 
     @Override
     public Object fetchPopular() {
         return foodRepo.fetchByPopularity();
+    }
+
+    @Override
+    public Object fetchAllTodaysFood() {
+        return foodRepo.fetchAllTodaysFood();
     }
 }

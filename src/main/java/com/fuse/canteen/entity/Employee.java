@@ -14,7 +14,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Employees")
-public class Employee extends BaseEntity{
+public class Employee {
 
     @Id
     @Column(name = "Id", nullable = false)

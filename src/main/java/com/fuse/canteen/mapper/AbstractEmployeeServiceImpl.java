@@ -19,7 +19,7 @@ public abstract class AbstractEmployeeServiceImpl implements EmployeeService {
     public Employee getEmployee(EmployeeDto employeeDto) {
         return Employee.builder()
                 .employeeCode(employeeDto.getEmployeeCode())
-                .employeePosition(employeeRepo.findEmployeeIn(employeeDto.getEmployeePositionIds()))
+                .employeePosition(employeePositionService.findEmployeePositionsIn(employeeDto.getEmployeePositionIds()))
                 .build();
     }
 

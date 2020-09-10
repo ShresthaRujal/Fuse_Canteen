@@ -23,5 +23,5 @@ public class EmployeePositionDto {
 
     @NotNull(message = FieldErrorConstants.NOT_NULL)
     @NotBlank(message = FieldErrorConstants.NOT_BLANK)
-    private Integer positionLevel;
+    private String positionLevel;
 }

@@ -1,12 +1,13 @@
 package com.fuse.canteen.service;
 
 import com.fuse.canteen.dto.OrderDto;
+import com.fuse.canteen.dto.OrderStatusPojo;
 import com.fuse.canteen.entity.Order;
 
 public interface OrderService {
-    void edit(OrderDto orderDto) throws Exception;
+    OrderDto edit(OrderDto orderDto) throws Exception;
 
-    void create(OrderDto orderDto);
+    OrderDto create(OrderDto orderDto) throws Exception;
 
     Object getById(Long orderId) throws Exception;
 
@@ -14,10 +15,15 @@ public interface OrderService {
 
     void delete(Long orderId) throws Exception;
 
-    Order getOrder(OrderDto orderDto);
+    Order getOrder(OrderDto orderDto) throws Exception;
 
     OrderDto getOrderDto(Order order);
 
     Object fetchPopular();
 
+    Object fetchAllHistoryByUser();
+
+    void updateStatus(OrderStatusPojo orderStatusPojo) throws Exception;
+
+    Object fetchAllOrdersByTime();
 }

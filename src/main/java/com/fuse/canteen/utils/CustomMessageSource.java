@@ -18,11 +18,13 @@ public class CustomMessageSource {
     }
 
     public String get(String code) {
-        return messageSource.getMessage(code,null,null);
+        return messageSource.getMessage(code,null,getCurrentLocale());
     }
 
     public String get(String code,Object... objects) {
-        return messageSource.getMessage(code,objects,null);
+        return messageSource.getMessage(code,objects,getCurrentLocale());
     }
-
+    private Locale getCurrentLocale() {
+        return LocaleContextHolder.getLocale();
+    }
 }

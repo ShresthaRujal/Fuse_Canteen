@@ -20,6 +20,7 @@ public class EmployeeDto {
     @NotBlank(message = FieldErrorConstants.NOT_BLANK)
     private String employeeCode;
     @NotNull(message = FieldErrorConstants.NOT_NULL)
-    private List<Integer> employeePositionIds;
+    @NotNull(message = FieldErrorConstants.NOT_BLANK)
+    private List<Long> employeePositionIds;
     private List<EmployeePositionDto> employeePositions;
 }

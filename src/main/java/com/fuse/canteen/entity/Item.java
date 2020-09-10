@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Items")
-public class Item extends HitCount_BaseEntity{
+public class Item extends HitCount_BaseEntity {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -30,11 +30,4 @@ public class Item extends HitCount_BaseEntity{
     @Column(nullable = false)
     private BigDecimal price;
 
-    @ManyToOne
-    @JoinColumn(name = "OrderId")
-    private Order order;
-
-    @ManyToOne
-    @JoinColumn(name = "FoodId")
-    private Order food;
 }

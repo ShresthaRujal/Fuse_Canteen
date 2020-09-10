@@ -5,9 +5,12 @@ import com.fuse.canteen.dto.EmployeePositionDto;
 import com.fuse.canteen.entity.Employee;
 import com.fuse.canteen.entity.EmployeePosition;
 
+import java.util.Collection;
+import java.util.List;
+
 public interface EmployeePositionService {
 
-    void create(EmployeePositionDto employeePositionDto);
+    void create(EmployeePositionDto employeePositionDto) throws Exception;
 
     void edit(EmployeePositionDto employeePositionDto) throws Exception;
 
@@ -20,4 +23,6 @@ public interface EmployeePositionService {
     EmployeePosition getEmployeePosition(EmployeePositionDto employeePositionDto);
 
     EmployeePositionDto getEmployeePositionDto(EmployeePosition employeePosition);
+
+    Collection<EmployeePosition> findEmployeePositionsIn(List<Long> employeePositionIds);
 }

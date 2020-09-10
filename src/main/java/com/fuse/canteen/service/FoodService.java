@@ -5,7 +5,7 @@ import com.fuse.canteen.entity.Food;
 
 public interface FoodService {
 
-    void create(FoodDto foodDto);
+    void create(FoodDto foodDto) throws Exception;
 
     void edit(FoodDto foodDto) throws Exception;
 
@@ -20,4 +20,6 @@ public interface FoodService {
     FoodDto getFoodDto(Food food);
 
     Object fetchPopular();
+
+    Object fetchAllTodaysFood();
 }

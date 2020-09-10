@@ -6,7 +6,7 @@ import javax.persistence.MappedSuperclass;
 
 @Data
 @MappedSuperclass
-public class HitCount_BaseEntity {
+public class HitCount_BaseEntity extends BaseEntity{
 
     private Integer hitCount;
 }

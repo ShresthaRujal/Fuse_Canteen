@@ -2,6 +2,7 @@ package com.fuse.canteen.service;
 
 import com.fuse.canteen.dto.UserDto;
 import com.fuse.canteen.entity.User;
+import javassist.NotFoundException;
 
 public interface UserService {
     void create(UserDto userDto) throws Exception;
@@ -14,6 +15,6 @@ public interface UserService {
 
     void delete(Long userId) throws Exception;
 
-    User getUser(UserDto userDto);
+    User getUser(UserDto userDto) throws NotFoundException;
 
 }

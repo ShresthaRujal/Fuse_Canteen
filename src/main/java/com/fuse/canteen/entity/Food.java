@@ -16,7 +16,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Foods")
-public class Food extends HitCount_BaseEntity {
+public class Food extends BaseEntity {
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -27,7 +27,8 @@ public class Food extends HitCount_BaseEntity {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "food")
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "FoodId")
     private Collection<Item> items;
 
 }

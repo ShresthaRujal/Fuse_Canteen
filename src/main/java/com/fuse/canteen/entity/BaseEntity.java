@@ -1,7 +1,9 @@
 package com.fuse.canteen.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fuse.canteen.constants.Status;
 import lombok.Data;
+import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -14,7 +16,8 @@ import java.util.Date;
 
 @Data
 @MappedSuperclass
-//@EntityListeners(AuditingEntityListener.class)
+@EntityListeners(AuditingEntityListener.class)
+@Audited
 public class BaseEntity implements Serializable {
 
     @CreatedDate
@@ -31,12 +34,12 @@ public class BaseEntity implements Serializable {
 
     @CreatedBy
     @Column(updatable = false,name = "EntryUserId",nullable = false)
-    private int entryUserId;
+    private Long entryUserId;
 
     @LastModifiedBy
     @Column(name = "StatusChangeUserId",nullable = false)
-    private int statusChangeUserId;
+    private Long statusChangeUserId;
 
-    @Column(name = "Status",nullable = false)
-    private Integer status;
+    @Column(name = "Status",nullable = true)
+    private Integer status = Status.ACTIVE.getKey();
 }

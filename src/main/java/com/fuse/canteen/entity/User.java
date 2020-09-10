@@ -37,14 +37,10 @@ public class User extends BaseEntity{
 
     private String phoneNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "EmployeeId")
     private Employee employee;
 
-    @ManyToMany
-    @JoinTable(name = "UsersRoles",
-            joinColumns = @JoinColumn(name = "UserId", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "RoleId", referencedColumnName = "id"))
-    private Collection<Role> roles;
+    private Integer role;
 
 }

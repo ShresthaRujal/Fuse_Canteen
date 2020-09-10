@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "EmployeePositions")
-public class EmployeePosition {
+public class EmployeePosition extends BaseEntity{
 
     @Id
     @Column(name = "Id", nullable = false)
@@ -24,7 +24,7 @@ public class EmployeePosition {
     @Column(name = "positionName", nullable = false)
     private String positionName;
     @Column(name = "positionLevel", nullable = false)
-    private Integer positionLevel;
+    private String positionLevel;
 
     @ManyToOne
     @JoinColumn(name = "employeeId",referencedColumnName="id")

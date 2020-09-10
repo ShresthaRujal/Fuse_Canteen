@@ -1,5 +1,6 @@
 package com.fuse.canteen.service.impl;
 
+import com.fuse.canteen.constants.Status;
 import com.fuse.canteen.dto.EmployeePositionDto;
 import com.fuse.canteen.entity.EmployeePosition;
 import com.fuse.canteen.mapper.AbstractEmployeePositionServiceImpl;
@@ -13,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 
+import java.util.Collection;
+import java.util.List;
+
 import static com.fuse.canteen.constants.StringConstants.MISSING_ID;
 import static com.fuse.canteen.constants.StringConstants.NOT_FOUND;
 
@@ -24,8 +28,13 @@ public class EmployeePositionServiceImpl extends AbstractEmployeePositionService
     private final CustomMessageSource customMessageSource;
 
     @Override
-    public void create(EmployeePositionDto employeePositionDto) {
-        employeePositionRepo.save(getEmployeePosition(employeePositionDto));
+    public void create(EmployeePositionDto employeePositionDto) throws Exception {
+        try {
+            employeePositionRepo.save(getEmployeePosition(employeePositionDto));
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new Exception(e.getMessage());
+    }
     }
 
     @Override
@@ -37,6 +46,7 @@ public class EmployeePositionServiceImpl extends AbstractEmployeePositionService
             beanUtilsBean.copyProperties(employeePosition, getEmployeePosition(employeePositionDto));
             employeePositionRepo.save(employeePosition);
         }catch (Exception e){
+            e.printStackTrace();
             throw new Exception(e.getMessage());
         }
     }
@@ -56,6 +66,12 @@ public class EmployeePositionServiceImpl extends AbstractEmployeePositionService
     public void delete(Long employeePosition_id) throws Exception {
         Assert.notNull(employeePosition_id, customMessageSource.get(MISSING_ID));
         EmployeePosition employeePosition = employeePositionRepo.findById(employeePosition_id).orElseThrow(() -> new Exception(customMessageSource.get(NOT_FOUND)));
-        employeePositionRepo.delete(employeePosition);
+        employeePosition.setStatus(Status.DEACTIVATED.getKey());
+        employeePositionRepo.save(employeePosition);
+    }
+
+    @Override
+    public Collection<EmployeePosition> findEmployeePositionsIn(List<Long> employeePositionIds) {
+        return employeePositionRepo.findEmployeePositionsIn(employeePositionIds);
     }
 }

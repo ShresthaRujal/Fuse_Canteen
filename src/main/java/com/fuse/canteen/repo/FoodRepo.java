@@ -8,4 +8,7 @@ public interface FoodRepo extends JpaRepository<Food,Long> {
 
     @Query(value = "select f.* from foods f order by f.hitCount desc",nativeQuery = true)
     Object fetchByPopularity();
+
+    @Query(value = "select f.* from foods f WHERE DATE(`EntryDate`) = CURDATE()",nativeQuery = true)
+    Object fetchAllTodaysFood();
 }

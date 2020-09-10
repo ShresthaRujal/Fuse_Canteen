@@ -62,6 +62,12 @@ mvn spring-boot:run
   
   4. To check further api's/resources you will find [postman](https://www.postman.com/downloads/) collection in project folder to import into
   
+  ##Technology Used
+  1. Spring Boot (includes JPA Auditing)
+  2. Mysql
+  3. Oauth2 with JWT
+  4. LogDb with Spring AOP
+  
   ##Features
   #####Roles of Admin:
   1. Add Food Items with Price (CRUD)
